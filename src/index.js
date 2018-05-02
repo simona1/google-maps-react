@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {camelize} from './lib/String';
 import {makeCancelable} from './lib/cancelablePromise';
-import invariant from 'invariant';
 
 const mapStyles = {
   container: {
@@ -54,10 +53,9 @@ export class Map extends React.Component {
   constructor(props) {
     super(props);
 
-    invariant(
-      props.hasOwnProperty('google'),
-      'You must include a `google` prop.'
-    );
+    if (!props.hasOwnProperty('google')) {
+      throw new Error('You must include a `google` prop');
+    }
 
     this.listeners = {};
     this.state = {
@@ -110,6 +108,9 @@ export class Map extends React.Component {
     }
     if (prevState.currentLocation !== this.state.currentLocation) {
       this.recenterMap();
+    }
+    if (this.props.bounds !== prevProps.bounds) {
+      this.map.fitBounds(this.props.bounds);
     }
   }
 
@@ -288,7 +289,8 @@ Map.propTypes = {
   disableDoubleClickZoom: PropTypes.bool,
   noClear: PropTypes.bool,
   styles: PropTypes.array,
-  gestureHandling: PropTypes.string
+  gestureHandling: PropTypes.string,
+  bounds: PropTypes.object
 };
 
 evtNames.forEach(e => (Map.propTypes[camelize(e)] = PropTypes.func));

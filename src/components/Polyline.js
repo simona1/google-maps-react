@@ -1,12 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { camelize } from '../lib/String'
+import { arePathsEqual } from '../lib/arePathsEqual';
+import { camelize } from '../lib/String';
 const evtNames = ['click', 'mouseout', 'mouseover'];
 
 const wrappedPromise = function() {
     var wrappedPromise = {},
-        promise = new Promise(function (resolve, reject) {
+        promise = new Promise(function
+           (resolve, reject) {
             wrappedPromise.resolve = resolve;
             wrappedPromise.reject = reject;
         });
@@ -24,7 +26,10 @@ export class Polyline extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.map !== prevProps.map) {
+    if (
+      this.props.map !== prevProps.map ||
+      !arePathsEqual(this.props.path, prevProps.path)
+    ) {
       if (this.polyline) {
         this.polyline.setMap(null);
       }

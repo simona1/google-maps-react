@@ -1,6 +1,6 @@
 {
   "name": "google-maps-react",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Google maps container",
   "author": "Fullstack.io <us@fullstack.io>",
   "license": "MIT",
@@ -48,6 +48,7 @@
     "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^5.1.1",
     "file-loader": "^0.8.5",
+    "gh-pages": "^1.1.0",
     "highlight.js": "^9.3.0",
     "history": "^3.0.0",
     "hjs-webpack": "^8.1.0",
@@ -62,8 +63,8 @@
     "react": "^15.0.0",
     "react-addons-test-utils": "^15.0.0",
     "react-dom": "^15.0.0",
-    "react-github-fork-ribbon": "^0.4.3",
-    "react-router": "^2.4.0",
+    "react-github-fork-ribbon": "^0.5.1",
+    "react-router-dom": "^4.2.2",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
@@ -73,7 +74,5 @@
     "react": "~0.14.8 || ^15.0.0 || ^16.0.0",
     "react-dom": "~0.14.8 || ^15.0.0 || ^16.0.0"
   },
-  "dependencies": {
-    "invariant": "^2.2.1"
-  }
+  "dependencies": {}
 }

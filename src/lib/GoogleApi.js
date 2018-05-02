@@ -1,12 +1,9 @@
-import invariant from 'invariant';
-
 export const GoogleApi = function(opts) {
   opts = opts || {};
 
-  invariant(
-    opts.hasOwnProperty('apiKey'),
-    'You must pass an apiKey to use GoogleApi'
-  );
+  if (!opts.hasOwnProperty('apiKey')) {
+    throw new Error('You must pass an apiKey to use GoogleApi');
+  }
 
   const apiKey = opts.apiKey;
   const libraries = opts.libraries || ['places'];
@@ -16,11 +13,11 @@ export const GoogleApi = function(opts) {
   const googleVersion = opts.version || '3.31';
 
   let script = null;
-  let google = window.google || null;
+  let google = (typeof window !== 'undefined' && window.google) || null;
   let loading = false;
   let channel = null;
   let language = opts.language;
-  let region = null;
+  let region = opts.region || null;
 
   let onLoadEvents = [];
 

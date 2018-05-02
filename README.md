@@ -86,6 +86,10 @@ export default GoogleApiWrapper({
 
 ![](http://d.pr/i/C7qr.png)
 
+## Examples
+
+Check out the example site at: [http://fullstackreact.github.io/google-maps-react](fullstackreact.github.io/google-maps-react)
+
 ## Additional Map Props
 The Map component takes a number of optional props.
 
@@ -127,6 +131,31 @@ center: Takes an object containing latitude and longitude coordinates. Use this 
           onClick={this.onMapClicked}
         >
 ```
+bounds:  Takes a [google.maps.LatLngBounds()](https://developers.google.com/maps/documentation/javascript/reference/3/#LatLngBounds) object to adjust the center and zoom of the map.
+```javascript
+var points = [
+    { lat: 42.02, lng: -77.01 },
+    { lat: 42.03, lng: -77.02 },
+    { lat: 41.03, lng: -77.04 },
+    { lat: 42.05, lng: -77.02 }
+]
+var bounds = new this.props.google.maps.LatLngBounds();
+for (var i = 0; i < points.length; i++) {
+  bounds.extend(points[i]);
+}
+return (
+    <Map
+        google={this.props.google}
+        initialCenter={{
+            lat: 42.39,
+            lng: -72.52
+        }}
+        bounds={bounds}>
+    </Map>
+);
+
+```
+
 It also takes event handlers described below:
 
 ### Events
@@ -446,7 +475,7 @@ If you prefer not to use the automatic loading option, you can also pass the `wi
 
 If you have some issues, please make an issue on the issues tab and try to include an example. We've had success with https://codesandbox.io
 
-An example template might look like: [https://codesandbox.io/s/x3xxjr7r04](https://codesandbox.io/s/x3xxjr7r04)
+An example template might look like: [https://codesandbox.io/s/rzwrk2854](https://codesandbox.io/s/rzwrk2854)
 
 ## Contributing
 
